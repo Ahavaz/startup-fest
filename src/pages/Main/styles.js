@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 
 import colors from '../../styles'
 
@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
   },
 
   list: {
-    marginTop: 70,
+    marginTop: Platform.OS === 'ios' ? 70 : 80,
     width: '100%'
   },
 
   item: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   resultsLink: {
