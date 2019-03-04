@@ -18,8 +18,8 @@ class Results extends React.Component {
     data: this.props.navigation.getParam('data', 'DataError')
   }
 
-  async componentDidMount() {
-    unsubscribe = await db.collection('ratings').onSnapshot(querySnapshot => {
+  componentDidMount() {
+    unsubscribe = db.collection('ratings').onSnapshot(querySnapshot => {
       if (querySnapshot.size > 0) {
         const data = querySnapshot.docs.reduce(this.getDataByStartup, {})
         const avgRating = Object.values(data).map(this.calcAverage)
@@ -36,8 +36,8 @@ class Results extends React.Component {
     })
   }
 
-  async componentWillUnmount() {
-    await unsubscribe()
+  componentWillUnmount() {
+    unsubscribe()
   }
 
   getDataByStartup = (obj, doc) => {
