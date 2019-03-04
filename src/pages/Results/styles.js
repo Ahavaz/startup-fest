@@ -1,16 +1,19 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
+import { Constants } from 'expo'
 
 import colors from '../../styles'
 
+const { statusBarHeight } = Constants
+
 const styles = StyleSheet.create({
   statusBar: {
-    height: 20,
+    height: statusBarHeight,
     backgroundColor: colors.main
   },
 
   container: {
     flex: 1,
-    marginTop: 50,
+    marginTop: Platform.OS === 'ios' ? 50 : 60,
     paddingLeft: 25,
     paddingRight: 25
   },
