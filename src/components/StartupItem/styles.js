@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   startup: {
     fontFamily: 'comfortaa-bold',
     fontSize: 20,
-    fontWeight: '500',
     color: '#333',
     marginBottom: 10
   },
