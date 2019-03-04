@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, ScrollView, StatusBar, Image } from 'react-native'
+
 import StarRating from '../../components/StarRating'
 
 import styles from './styles'
