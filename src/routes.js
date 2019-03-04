@@ -1,6 +1,6 @@
 import React from 'react'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
-import { View, Platform, Dimensions } from 'react-native'
+import { View, Platform, Dimensions, TouchableOpacity, TouchableNativeFeedback } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import colors from './styles'
@@ -22,22 +22,62 @@ export default createAppContainer(
         }
       },
       Details: {
-        screen: Details
-        // navigationOptions: ({ navigation }) => {
-        // headerLeft: null,
-        // headerRight: <Button title="Close" onPress={() => navigation.navigate('Main')} />
-        // headerLeftContainerStyle: {
-        // left: width * 0.91
-        // left: '90%'
-        // },
-        // headerBackImage: (
-        //   <Ionicons
-        //     name={Platform.OS === 'ios' ? `ios-close` : `md-close`}
-        //     size={50}
-        //     color={colors.main}
-        //   />
-        // )
-        // }
+        screen: Details,
+        navigationOptions: ({ navigation }) => ({
+          headerLeft: null,
+          headerRight:
+            Platform.OS === 'ios' ? (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                underlayColor="transparent"
+                style={{
+                  height: 50,
+                  width: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Ionicons
+                  name={Platform.OS === 'ios' ? `ios-close` : `md-close`}
+                  size={50}
+                  color={colors.main}
+                />
+              </TouchableOpacity>
+            ) : (
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginRight: 10,
+                  borderRadius: 50,
+                  overflow: 'hidden'
+                }}
+              >
+                <TouchableNativeFeedback
+                  onPress={() => navigation.goBack()}
+                  background={TouchableNativeFeedback.Ripple(colors.main)}
+                  useForeground={true}
+                >
+                  <View
+                    style={{
+                      height: 35,
+                      width: 35,
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <Ionicons
+                      name={Platform.OS === 'ios' ? `ios-close` : `md-close`}
+                      size={35}
+                      color={colors.main}
+                    />
+                  </View>
+                </TouchableNativeFeedback>
+              </View>
+            )
+        })
       },
       Results: {
         screen: Results,
@@ -59,9 +99,9 @@ export default createAppContainer(
           textAlign: 'center',
           flex: 1
         }
-      }
-      // headerMode: 'screen',
-      // mode: 'modal'
+      },
+      headerMode: 'screen'
+      // mode: 'card'
     }
   )
 )
