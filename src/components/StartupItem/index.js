@@ -9,6 +9,7 @@ import {
   Platform
 } from 'react-native'
 
+import colors from '../../styles'
 import styles from './styles'
 
 const StartupItem = ({ data, navigation }) => {
@@ -19,8 +20,8 @@ const StartupItem = ({ data, navigation }) => {
   return Platform.OS === 'android' ? (
     <TouchableNativeFeedback
       onPress={() => onPressItem(data)}
-      underlayColor="transparent"
-      background={TouchableNativeFeedback.SelectableBackground()}
+      useForeground={true}
+      background={TouchableNativeFeedback.Ripple(colors.main)}
     >
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: data.imageUrl }} />
